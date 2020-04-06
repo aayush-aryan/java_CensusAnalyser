@@ -36,7 +36,7 @@ public class StateCensusAnalyserTest {
         }
     }
     @Test
-    public void givenIndiaCensusCSVWithCorrectFileButWrongDelimiterShouldThrowException() {
+    public void givenIndiaCensusCSVWithCorrectFilebutWrongDelimiterShouldThrowException() {
         try {
             stateCensusAnalyser.loadIndiaStateCodeData(CSV_FILE_WITH_WRONG_DELIMITER);
         }catch (StateCensusAnalyserException e){
@@ -44,7 +44,7 @@ public class StateCensusAnalyserTest {
         }
     }
     @Test
-    public void givenIndiaCensusCSVWithCorrectFileButWrongHeaderShouldThrowException() {
+    public void givenIndiaCensusCSVWithCorrectFileButWrongHeadershouldThrowException() {
         try {
             stateCensusAnalyser.loadIndiaStateCodeData(CSV_FILE_WITH_WRONG_HEADER);
         }catch (StateCensusAnalyserException e){
