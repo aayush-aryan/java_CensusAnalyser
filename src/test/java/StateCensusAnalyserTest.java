@@ -4,14 +4,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class StateCensusAnalyserTest {
-    private static final String INDIA_STATE_CENSUS_CSV_FILE_PATH = ;
-    private static final Object INDIA_STATE_CODE_CSV_FILE_PATH = ;
-    final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
-    final String WRONG_CSV_FILE_PATH ="./src/main/resources/IndiaStateCensusData.csv";
-    final String WRONG_CSV_FILE_TYPE = "./src/test/resources/IndiaStateCensusData.txt";
-    final String CSV_FILE_WITH_WRONG_DELIMITER = "./src/test/resources/XIndiaStateCensusData.csv";
-    final String CSV_FILE_WITH_WRONG_HEADER = "./src/test/resources/XIndiaStateCensusData.csv";
-    StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
+    final String INDIA_STATE_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
+    final String INDIA_STATE_CODE_CSV_FILE_PATH = "./src/test/resources/StateCodeData.csv";
+    final String WRONG_CSV_FILE_PATH = "./src/main/resources/StateCodeData.csv";
+    final String WRONG_CSV_FILE_TYPE = "./src/test/resources/StateCodeData.pdf";
+    final String CSV_FILE_WITH_WRONG_DELIMITER = "./src/test/resources/XStateCodeData.csv";
+    final String CSV_FILE_WITH_WRONG_HEADER = "./src/test/resources/XStateCodeData.csv";
+        StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
         @Test
         public void givenIndiaStateCensusCSVFileReturnsCorrectRecords() {
             try {
