@@ -33,9 +33,9 @@ public class StateCensusAnalyser {
     }
     private <E> int getCount(Iterator<E> iterator){
         Iterable<E> csvIterable = () -> iterator;
-        int numOfEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-        return numOfEntries;
+        return (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
     }
+
 }
 
 
