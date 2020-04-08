@@ -1,10 +1,7 @@
-
-       /* import com.google.gson.Gson;*/
-
        import com.blabz.census_analyser.CSVBuilderException;
        import org.junit.Assert;
        import org.junit.Test;
-
+       import com.google.gson.Gson;
        import static censusanalyser.StateCensusAnalyser.COUNTRY.INDIA;
        import static censusanalyser.StateCensusAnalyser.COUNTRY.US;
 
@@ -19,6 +16,7 @@
 
             StateCensusAnalyser indiaCensusAnalyser = new StateCensusAnalyser(INDIA);
             StateCensusAnalyser usCensusAnalyser = new StateCensusAnalyser(US);
+            StateCensusAnalyser CensusAnalyser = new StateCensusAnalyser();
 
             @Test
             public void givenUSCensusCSVFileReturnsCorrectRecords() {
