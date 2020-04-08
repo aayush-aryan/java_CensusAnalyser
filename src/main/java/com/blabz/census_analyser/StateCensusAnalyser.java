@@ -1,10 +1,10 @@
 package com.blabz.census_analyser;
-
+import com.google.gson.Gson;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
 
 public class StateCensusAnalyser{
         HashMap<String, CensusDAO> censusDAOMap = new HashMap<String, CensusDAO>();
@@ -38,14 +38,15 @@ public class StateCensusAnalyser{
                 throw new StateCensusAnalyserException(e.getMessage(), e.type.name());
             }
         }
-        public String getStateWiseSortedSPopulation() throws StateCensusAnalyserException {
+        public String getStateWiseSortedSDensity() throws StateCensusAnalyserException {
             if (censusDAOMap == null || censusDAOMap.size() == 0)
                 throw new StateCensusAnalyserException("No Population State Data", StateCensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
-            Comparator<Map.Entry<String, CensusDAO>> censusComparator = Comparator.comparing(census -> census.getValue().population);
+            Comparator<Map.Entry<String, CensusDAO>> censusComparator = Comparator.comparing(census -> census.getValue().densityPerSqKm);
             LinkedHashMap<String, CensusDAO> sortedByValue = this.sort(censusComparator);
             ArrayList<CensusDAO> list = new ArrayList<CensusDAO>(sortedByValue.values());
             Collections.reverse(list);
-            return new Gson().toJson(list);
+            String sortedStateCensusJson = new Gson().toJson(list);
+            return sortedStateCensusJson;
         }
         private <E extends CensusDAO> LinkedHashMap<String, CensusDAO> sort(Comparator censusComparator) {
             Set<Map.Entry<String, CensusDAO>> entries = censusDAOMap.entrySet();
