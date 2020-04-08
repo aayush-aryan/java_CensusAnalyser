@@ -39,7 +39,7 @@ public class StateCensusAnalyserTest{
         }
 
         @Test
-        public void givenIndianStateCensusDataWhenNullShouldThrowException() {
+        public void givenIndianStateCensusData_WhenNullShouldThrowException() {
             try {
                 String sortedCensusData = stateCensusAnalyser.getStateWiseSortedSDensity();
                 CensusDAO[] stateCensuses = new Gson().fromJson(sortedCensusData, CensusDAO[].class);
@@ -90,7 +90,7 @@ public class StateCensusAnalyserTest{
             }
         }
         @Test
-        public void givenIndiaCensusCSVWithCorrectFileButWrongHeaderShouldThrowException() {
+        public void givenIndiaCensusCSVWithcorrectFileButWrongHeaderShouldThrowException() {
             try {
                 stateCensusAnalyser.loadIndiaStateCodeData(CSV_FILE_WITH_WRONG_HEADER);
             }catch (StateCensusAnalyserException e){
