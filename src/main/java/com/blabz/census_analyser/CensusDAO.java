@@ -2,9 +2,9 @@ package com.blabz.census_analyser;
 
 public class CensusDAO {
     public String state;
-    public String areaInSqKm;
-    public String densityPerSqKm;
-    public String population;
+    public Double areaInSqKm;
+    public Double densityPerSqKm;
+    public Integer population;
     public String stateCode;
     public String srNo;
     public String tin;
@@ -15,10 +15,19 @@ public class CensusDAO {
         densityPerSqKm = stateCensusCSV.getDensityPerSqKm();
         population = stateCensusCSV.getPopulation();
     }
-    public CensusDAO(CSVStates statesCodeCSV) {
-        srNo = statesCodeCSV.srNo;
-        state = statesCodeCSV.stateName;
-        stateCode = statesCodeCSV.stateCode;
-        tin = statesCodeCSV.tin;
+
+    public CensusDAO(CSVStates stateCodeCSV) {
+        srNo = stateCodeCSV.srNo;
+        state = stateCodeCSV.stateName;
+        stateCode = stateCodeCSV.stateCode;
+        tin = stateCodeCSV.tin;
+    }
+
+    public CensusDAO(CSVUSCensus usCSVData) {
+        stateCode = usCSVData.getStateId();
+        areaInSqKm = usCSVData.getArea();
+        state = usCSVData.getState();
+        densityPerSqKm = usCSVData.getPopulationDensity();
+
     }
 }
