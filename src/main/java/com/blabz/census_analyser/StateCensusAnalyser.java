@@ -1,10 +1,12 @@
 package com.blabz.census_analyser;
+
 import com.google.gson.Gson;
+
 import java.io.IOException;
+import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 public class StateCensusAnalyser{
         HashMap<String, CensusDAO> censusDAOMap = new HashMap<String, CensusDAO>();
@@ -51,7 +53,7 @@ public class StateCensusAnalyser{
         private <E extends CensusDAO> LinkedHashMap<String, CensusDAO> sort(Comparator censusComparator) {
             Set<Map.Entry<String, CensusDAO>> entries = censusDAOMap.entrySet();
             List<Map.Entry<String, CensusDAO>> listOfEntries = new ArrayList<Map.Entry<String, CensusDAO>>(entries);
-            Collections.sort(listOfEntries, censusComparator);
+            listOfEntries.sort(censusComparator);
             LinkedHashMap<String, CensusDAO> sortedByValue = new LinkedHashMap<String, CensusDAO>(listOfEntries.size());
             for (Map.Entry<String, CensusDAO> entry : listOfEntries) {
                 sortedByValue.put(entry.getKey(), entry.getValue());
