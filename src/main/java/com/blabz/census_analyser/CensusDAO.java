@@ -30,4 +30,8 @@ public class CensusDAO {
         densityPerSqKm = usCSVData.getPopulationDensity();
 
     }
+
+    public static void getSortComparator(StateCensusAnalyser.SortingMode mode) {
+
+    }
 }
