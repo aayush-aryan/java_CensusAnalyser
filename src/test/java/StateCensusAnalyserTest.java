@@ -140,7 +140,7 @@
             }
 
             @Test
-            public void givenIndiaCensusCSVWithCorrectFileButWrongHeaderShouldThrowException() {
+            public void givenIndiaCensusCSVWithCorectFileButWrongHeaderShouldThrowException() {
                 try {
                     indiaCensusAnalyser.loadCensusData(INDIA, CSV_FILE_WITH_WRONG_HEADER);
                 } catch (CSVBuilderException e) {
