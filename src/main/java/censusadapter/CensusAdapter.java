@@ -1,6 +1,12 @@
 package censusadapter;
 
-import com.blabz.census_analyser.*;
+import censusanalyser.*;
+import censusdto.IndiaCSVDTO;
+import censusdto.UsCSVDTO;
+import com.blabz.census_analyser.CSVBuilderException;
+import com.blabz.census_analyser.CSVBuilderFactory;
+import com.blabz.census_analyser.CensusDAO;
+import com.blabz.census_analyser.ICSVBuilder;
 import org.apache.commons.collections.map.HashedMap;
 
 import java.io.IOException;
@@ -11,7 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.stream.StreamSupport;
 
-public abstract class CensusAdapter{
+public class CensusAdapter{
         public abstract Map<String, CensusDAO> loadCensusData(String... csvFilePath) throws CSVBuilderException ;
 
         <E> Map<String, CensusDAO> loadCensusData(Class<E> censusCSVClass, String... getPath) throws CSVBuilderException {
@@ -19,16 +25,16 @@ public abstract class CensusAdapter{
             try (Reader reader = Files.newBufferedReader(Paths.get(getPath[0]))
             ) {
                 ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-                Iterator<E> csvFileIterator = csvBuilder.getCSVFileIterator(reader, censusCSVClass);
+                Iterator<E> csvFileIterator = ((ICSVBuilder) csvBuilder).getCSVFileIterator(reader, censusCSVClass);
                 Iterable<E> csvStateCensusIterable = () -> csvFileIterator;
-                if (censusCSVClass.getName().equals("censusanalyser.CSVStateCensus"))
+                if (censusCSVClass.getName().equals("censusdto.IndiaCSVDTO"))
                     StreamSupport.stream(csvStateCensusIterable.spliterator(), false)
-                            .map(CSVStateCensus.class::cast)
-                            .forEach(CSVStateCensus -> censusDAOMap.put(CSVStateCensus.getState(), new CensusDAO(CSVStateCensus)));
-                if (censusCSVClass.getName().equals("censusanalyser.CSVUSCensus"))
+                            .map(IndiaCSVDTO.class::cast)
+                            .forEach(IndiaCSVDTO -> censusDAOMap.put(IndiaCSVDTO.state, new CensusDAO(IndiaCSVDTO)));
+                if (censusCSVClass.getName().equals("censusdto.UsCSVDTO"))
                     StreamSupport.stream(csvStateCensusIterable.spliterator(), false)
-                            .map(CSVUSCensus.class::cast)
-                            .forEach(UsCSVData -> censusDAOMap.put(UsCSVData.getState(), new CensusDAO(UsCSVData)));
+                            .map(UsCSVDTO.class::cast)
+                            .forEach(UsCSVDTO -> censusDAOMap.put(UsCSVDTO.state, new CensusDAO(UsCSVDTO)));
                 return censusDAOMap;
             } catch (IOException e) {
                 throw new CSVBuilderException(e.getMessage(),
